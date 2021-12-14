@@ -57,13 +57,7 @@ app.get(
                 message: 'Oops!, unable to fetch todos'
             })
         }
-    }
-
-
-
-
-
-)
+    })
 
 //post()
 // app.post(
@@ -108,12 +102,28 @@ app.post(
     }
 )
 
-//delete()
+delete(
 app.delete(
     '/todo',(req,res)=>{
         res.send('Use this route to delete data');
     }
-)*/
+))*/
+app.delete(
+    '/todos/:category', async(req, res) => {
+        const { category } = req.params;
+        const allCategoryTodos = await todoModel.find({})
+            .where("category").equals(category);
+        if (allCategoryTodos) {
+            return res.status(200).status({
+                message: `Category todo deleted successfully`,
+                data: allCategoryTodos
+            });
+        } else {
+            return res.status(500).json({
+                message: 'Oops!, unable to delete todo'
+            })
+        }
+    })
 
 app.listen((PORT), () => {
     console.log(`listening on port ${PORT}`);
