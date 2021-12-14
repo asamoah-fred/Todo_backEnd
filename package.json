@@ -1,6 +1,9 @@
 {
   "name": "js_basics",
   "version": "1.0.0",
+  "engines": {
+    "node": "14.16.1"
+  },
   "description": "A backend service for a todo mobile app",
   "main": "index.js",
   "type": "module",
